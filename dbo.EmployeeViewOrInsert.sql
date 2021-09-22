@@ -1,37 +1,39 @@
-﻿CREATE PROCEDURE EmployeeViewOrInsert
- @mode varchar(50),
- @Surname varchar(50),
- @Name varchar(50),
- @Partonymic varchar(50),
- @Date datetime,
- @CompanyName varchar(50),
- @Id int
+﻿CREATE PROCEDURE [dbo].[EmployeeViewOrInsert]
+ @mode nvarchar(max),
+ @Surname nvarchar(max)=null,
+ @Name nvarchar(max)=null,
+ @Partonymic nvarchar(max)=null,
+ @Date datetime=null,
+ @CompanyName nvarchar(max)=null,
+ @Id int = null
 AS
 BEGIN
 
-		SET NOCOUNT ON;
+		
 
 		if(@mode='getEmptyList')
 		Begin
 			Select
-			Id,
+			Id
 			Surname,
 			Name,
-			Partonymic,
+			Patronymic,
 			Date,
 			CompanyName
-			From tblTable
+			From [Table]
 		End
 
 		if(@mode='AddEmployee')
 		Begin
-			INSERT INTO tblTable(
+			INSERT INTO [Table](
+			Id,
 			Surname,
 			Name,
-			Partonymic,
+			Patronymic,
 			Date,
 			CompanyName)
 			Values(
+			@Id,
 			@Surname,
 			@Name,
 			@Partonymic,
@@ -47,17 +49,17 @@ BEGIN
 			Id,
 			Surname,
 			Name,
-			Partonymic,
+			Patronymic,
 			Date,
 			CompanyName
-			FROM tblTable
+			FROM [Table]
 			Where Id=@Id
 
 		End
 
 		if(@mode='UpdateEmployee')
 		Begin
-			Update tblTable
+			Update [Table]
 			Set Surname=@Surname,
 			Name=@Name,
 			Patronymic=@Partonymic,
@@ -68,6 +70,7 @@ BEGIN
 
 		if(@mode='DeleteEmployee')
 		Begin
-			Delete from  tblTable Where Id=@Id
+			Delete from  [Table] Where Id=@Id
 		End
+RETURN
 END
