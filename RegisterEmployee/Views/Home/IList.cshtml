@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RegisterEmployee.Models.Companies>
+
+@{
+    ViewData["Title"] = "IList";
+}
+
+<h1>IList</h1>
+
+<p>
+    <a asp-action="AddCompany">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opf)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opf)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCompany", new { /* id=item.PrimaryKey */ }) |
+                
+                @Html.ActionLink("Delete", "DeleteCompany", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

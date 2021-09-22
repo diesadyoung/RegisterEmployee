@@ -13,17 +13,21 @@ namespace RegisterEmployee
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IConfiguration _config;
+
+        public Startup(IConfiguration config)
         {
-            Configuration = configuration;
+            _config = config;
         }
 
-        public IConfiguration Configuration { get; }
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddMvc();
+            string constr = this._config.GetConnectionString("connection");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
