@@ -21,7 +21,7 @@ namespace RegisterEmployee.Services
         private DataSet _ds;
 
         string strConString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=RegisterEmployee;Integrated Security=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public List<Employees> GetEmployeeList()
+        public IList<Employees> GetEmployeeList()
         {
             
             IList<Employees> getEmptyList = new List<Employees>();
@@ -40,12 +40,12 @@ namespace RegisterEmployee.Services
                     for (int i = 0; i < _ds.Tables[0].Rows.Count; i++)
                     {
                         Employees obj = new Employees();
-                        obj.Id = Convert.ToInt32(_ds.Tables[0].Rows[0]["Id"]);
-                        obj.Name = Convert.ToString(_ds.Tables[0].Rows[0]["Name"]);
-                        obj.Surname = Convert.ToString(_ds.Tables[0].Rows[0]["Surname"]);
-                        obj.Patronymic = Convert.ToString(_ds.Tables[0].Rows[0]["Partonymic"]);
-                        obj.Date = Convert.ToDateTime(_ds.Tables[0].Rows[0]["Date"]);
-                        obj.CompanyName = Convert.ToString(_ds.Tables[0].Rows[0]["CompanyName"]);
+                        obj.Id = Convert.ToInt32(_ds.Tables[0].Rows[i].ItemArray[0]);
+                        obj.Name = Convert.ToString(_ds.Tables[0].Rows[i]["Name"]);
+                        obj.Surname = Convert.ToString(_ds.Tables[0].Rows[i]["Surname"]);
+                        //obj.Patronymic = Convert.ToString(_ds.Tables[0].Rows[0]["Partonymic"]);
+                        obj.Date = Convert.ToDateTime(_ds.Tables[0].Rows[i]["Date"]);
+                        obj.CompanyName = Convert.ToString(_ds.Tables[0].Rows[i]["CompanyName"]);
                         getEmptyList.Add(obj);
 
                     }
@@ -65,7 +65,7 @@ namespace RegisterEmployee.Services
                 cmd.Parameters.AddWithValue("@mode", "AddEmployee");
                 cmd.Parameters.AddWithValue("@Surname", model.Surname);
                 cmd.Parameters.AddWithValue("@Name", model.Name);
-                cmd.Parameters.AddWithValue("@Patronymic", model.Patronymic);
+                //cmd.Parameters.AddWithValue("@Patronymic", model.Patronymic);
                 cmd.Parameters.AddWithValue("@Date", model.Date);
                 cmd.Parameters.AddWithValue("@CompanyName", model.CompanyName);
                 cmd.ExecuteNonQuery();
@@ -93,7 +93,7 @@ namespace RegisterEmployee.Services
                     model.Id = Convert.ToInt32(_ds.Tables[0].Rows[0]["Id"]);
                     model.Name = Convert.ToString(_ds.Tables[0].Rows[0]["Name"]);
                     model.Surname = Convert.ToString(_ds.Tables[0].Rows[0]["Surname"]);
-                    model.Patronymic = Convert.ToString(_ds.Tables[0].Rows[0]["Partonymic"]);
+                    //model.Patronymic = Convert.ToString(_ds.Tables[0].Rows[0]["Partonymic"]);
                     model.Date = Convert.ToDateTime(_ds.Tables[0].Rows[0]["Date"]);
                     model.CompanyName = Convert.ToString(_ds.Tables[0].Rows[0]["CompanyName"]);
                 }
@@ -113,7 +113,7 @@ namespace RegisterEmployee.Services
                 cmd.Parameters.AddWithValue("@Id", model.Id);
                 cmd.Parameters.AddWithValue("@Surname", model.Surname);
                 cmd.Parameters.AddWithValue("@Name", model.Name);
-                cmd.Parameters.AddWithValue("@Patronymic", model.Patronymic);
+                //cmd.Parameters.AddWithValue("@Patronymic", model.Patronymic);
                 cmd.Parameters.AddWithValue("@Date", model.Date);
                 cmd.Parameters.AddWithValue("@CompanyName", model.CompanyName);
                 cmd.ExecuteNonQuery();

@@ -8,7 +8,7 @@ namespace RegisterEmployee.Models
 {
     public class Companies
     {
-        [Key]
+       
         public int Id { get; set; }
 
         public string CompanyName { get; set; }
