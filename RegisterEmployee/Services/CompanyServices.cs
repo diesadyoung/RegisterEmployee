@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RegisterEmployee.Services
 {
@@ -105,9 +103,9 @@ namespace RegisterEmployee.Services
             using (SqlConnection con = new SqlConnection(strConString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("DeleteCompany", con);
+                SqlCommand cmd = new SqlCommand("Procedure", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@mode", "DeleteEmployee");
+                cmd.Parameters.AddWithValue("@mode", "DeleteCompany");
                 cmd.Parameters.AddWithValue("@Id", Id);
                 cmd.ExecuteNonQuery();
             }

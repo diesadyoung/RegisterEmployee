@@ -7,7 +7,7 @@
 <h1>List</h1>
 
 <p>
-    <a asp-action="List">Create New</a>
+    <a asp-action="AddEmployee">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -57,7 +57,7 @@
             <td>
                 @Html.ActionLink("Edit", "EditEmployee", new { /* id=item.PrimaryKey */ }) |
                 
-                @Html.ActionLink("Delete", "DeleteEmployee", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "DeleteEmployees", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

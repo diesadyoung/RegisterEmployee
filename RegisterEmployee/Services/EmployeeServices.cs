@@ -1,15 +1,8 @@
 ﻿using RegisterEmployee.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Data;
-using Microsoft.Extensions.Configuration;
-using RegisterEmployee.Controllers;
-using System.IO;
-using RegisterEmployee;
 
 namespace RegisterEmployee.Services
 {
@@ -126,7 +119,7 @@ namespace RegisterEmployee.Services
             using (SqlConnection con = new SqlConnection(strConString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("DeleteEmployee", con);
+                SqlCommand cmd = new SqlCommand("EmployeeViewOrInsert", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@mode", "DeleteEmployee");
                 cmd.Parameters.AddWithValue("@Id", Id);
